@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node:18.13
+      - image: circleci/node:14.17
 
     steps:
       - checkout
@@ -11,7 +11,7 @@ jobs:
       - run:
           name: Install dependencies
           command: npm install
-
+          
       - run:
           name: Run tests
           command: npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
