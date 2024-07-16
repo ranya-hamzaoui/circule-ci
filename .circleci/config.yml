@@ -1,0 +1,27 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:14.17
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install dependencies
+          command: npm install
+
+      - run:
+          name: Build Angular app
+          command: npm run build -- --prod
+
+      - run:
+          name: Run tests
+          command: npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
